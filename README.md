@@ -74,6 +74,22 @@ I am a **Software Engineer at [Codal](https://codal.com)** specializing in **Sho
 | **Elasticsearch Indexing** | Real-time catalog indexing with dynamic facets and B2B pricing overrides | Elasticsearch indexer subscribers, custom criteria builders, query caching |
 | **Code Reliability & Testing** | Zero-downtime database migrations, contract testing, and architectural integrity | PHPStan (Level 8), PHPUnit integration suites, PHP-CS-Fixer (PSR-12) |
 
+### 🔄 Asynchronous Messaging & Orchestration Architecture
+
+```text
+┌──────────────────────┐      Webhook / API       ┌───────────────────────────┐
+│ External ERP / D365  │ ───────────────────────> │ Shopware Orchestration    │
+└──────────────────────┘                          └─────────────┬─────────────┘
+                                                                │ Async Message Bus
+                                                                ▼
+┌──────────────────────┐   Buffered Background    ┌───────────────────────────┐
+│ Elasticsearch / DAL  │ <─────────────────────── │ RabbitMQ Queue Consumers  │
+└──────────────────────┘       Worker Pool        └───────────────────────────┘
+```
+
+- **Decoupled Workflows**: Offloading intensive trade agreement calculations and customer sync to asynchronous RabbitMQ consumers.
+- **Failover & Retry Architecture**: Dead-letter exchange handling with automated replay mechanisms to ensure zero transaction loss.
+
 ---
 
 ## 🚀 Featured Enterprise Repository
